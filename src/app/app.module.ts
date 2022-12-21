@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TabsComponent } from './components/tabs/tabs.component';
-import { ContactsComponent } from './components/contacts/contacts.component';
+// import { ContactsComponent } from './components/contacts/contacts.component';
 import { AboutComponent } from './components/about/about.component';
 
 import { MaterialModule } from './material.module';
@@ -20,7 +20,7 @@ import { SalidasComponent } from './components/salidas/salidas.component';
     AppComponent,
     HeaderComponent,
     TabsComponent,
-    ContactsComponent,
+    // ContactsComponent,
     AboutComponent,
     FooterComponent,
     InicioComponent,
