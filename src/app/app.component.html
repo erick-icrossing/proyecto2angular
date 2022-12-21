@@ -1,0 +1,5 @@
+<app-header [title]="title"></app-header>
+<!-- <app-tabs></app-tabs> -->
+<app-inicio *ngIf="!data.salidas" (InicioChangeEvent)="get_data($event)"></app-inicio>
+<app-salidas *ngIf="data.salidas" (AgregarRegistroEvent)="get_data($event)" [global]="data"></app-salidas>
+<app-footer [presupuesto]="data.presupuesto" [gastos]="data.gastos" [total]="data.total"></app-footer>

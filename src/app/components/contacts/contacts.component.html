@@ -1,0 +1,225 @@
+<div [ngStyle]="{ 'margin-top': '30px' }">
+  <!-- New contact form -->
+  <div *ngIf="!editionMode">
+    <h2 [ngStyle]="{ 'margin-left': '20%' }">Add Contact</h2>
+
+    <form
+      class="form-container"
+      id="addContactForm"
+      [ngStyle]="{ 'margin-left': '20%' }"
+      (ngSubmit)="add_contact(); newContactForm.resetForm()"
+      #newContactForm="ngForm"
+    >
+      <!-- FirstName input -->
+      <mat-form-field class="wide-input">
+        <mat-label>First Name</mat-label>
+        <input
+          matInput
+          ngModel
+          #first_name="ngModel"
+          name="first_name"
+          id="first_name"
+          placeholder="First Name"
+          required
+        />
+        <mat-error *ngIf="!first_name.valid && first_name.touched">
+          First Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- LastName input -->
+      <mat-form-field class="wide-input">
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          ngModel
+          #last_name="ngModel"
+          name="last_name"
+          id="last_name"
+          placeholder="Last Name"
+          required
+        />
+        <mat-error *ngIf="!last_name.valid && last_name.touched">
+          Last Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Email input -->
+      <mat-form-field class="wide-input">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          ngModel
+          #email="ngModel"
+          name="email"
+          id="email"
+          placeholder="Contact email"
+          required
+          email
+        />
+        <mat-error *ngIf="!email.valid && email.touched">
+          Contact email is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Submit button -->
+      <button
+        matInput
+        mat-flat-button
+        [disabled]="!newContactForm.form.valid"
+        [ngStyle]="{
+          'margin-top': '-18px',
+          'margin-left': '10px',
+          padding: '28px'
+        }"
+        color="accent"
+        type="submit"
+      >
+        Add
+      </button>
+    </form>
+  </div>
+
+  <!-- Edit contact form -->
+  <h2 *ngIf="editionMode" [ngStyle]="{ 'margin-left': '20%' }">Edit Contact</h2>
+  <form
+    class="form-container"
+    id="editContactForm"
+    *ngIf="editionMode"
+    [ngStyle]="{ 'margin-left': '20%' }"
+    (ngSubmit)="update_contact(); editionMode = !editionMode"
+    #editContactForm="ngForm"
+  >
+    <!-- FirstName input -->
+    <mat-form-field class="wide-input">
+      <mat-label>First Name</mat-label>
+      <input
+        matInput
+        ngModel
+        name="first_name"
+        #first_name="ngModel"
+        placeholder="First Name"
+        required
+      />
+      <mat-error *ngIf="!first_name.valid && first_name.touched">
+        First Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- LastName input -->
+    <mat-form-field class="wide-input">
+      <mat-label>Last Name</mat-label>
+      <input
+        matInput
+        ngModel
+        name="last_name"
+        #last_name="ngModel"
+        placeholder="Last Name"
+        required
+      />
+      <mat-error *ngIf="!last_name.valid && last_name.touched">
+        Last Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Email input -->
+    <mat-form-field class="wide-input">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        ngModel
+        name="email"
+        #email="ngModel"
+        placeholder="Email"
+        required
+      />
+      <mat-error *ngIf="!email.valid && email.touched">
+        Email is required
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Action buttons -->
+    <div class="button-row">
+      <button
+        mat-flat-button
+        color="accent"
+        [disabled]="!editContactForm.form.valid"
+        [ngStyle]="{
+          'margin-top': '20px',
+          'margin-left': '10px',
+          padding: '28px'
+        }"
+        type="submit"
+      >
+        Save
+      </button>
+      &nbsp;
+      <button
+        mat-flat-button
+        color="warn"
+        [ngStyle]="{
+          'margin-top': '20px',
+          'margin-left': '10px',
+          padding: '28px'
+        }"
+        (click)="editionMode = !editionMode"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+
+  <!-- Contacts table -->
+  <table
+    mat-table
+    [dataSource]="contacts"
+    [ngStyle]="{ 'margin-top': '30px' }"
+    *ngIf="!editionMode"
+  >
+    <!-- FirstName column -->
+    <ng-container matColumnDef="first_name">
+      <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+      <mat-cell *matCellDef="let contact">
+        {{ contact.first_name | titlecase }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- LastName column -->
+    <ng-container matColumnDef="last_name">
+      <mat-header-cell *matHeaderCellDef>Last Name</mat-header-cell>
+      <mat-cell *matCellDef="let contact">
+        {{ contact.last_name | titlecase }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Email column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+      <mat-cell *matCellDef="let contact">
+        {{ contact.email | lowercase }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Buttons column -->
+    <ng-container matColumnDef="_id">
+      <mat-header-cell *matHeaderCellDef>Action Buttons</mat-header-cell>
+      <mat-cell *matCellDef="let contact">
+        <button
+          mat-flat-button
+          color="accent"
+          (click)="search_contact(contact._id); editionMode = !editionMode"
+        >
+          Edit
+        </button>
+        &nbsp;
+        <button mat-flat-button color="warn" (click)="delete_contact(contact)">
+          Delete
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Table settings -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </table>
+</div>

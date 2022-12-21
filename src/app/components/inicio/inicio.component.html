@@ -1,0 +1,81 @@
+<!-- New contact form -->
+<div>
+    <h2 [ngStyle]="{ 'margin-left': '20%' }">Ingresar Presupuesto</h2>
+
+    <form
+      class="form-container"
+      id="addContactForm"
+      [ngStyle]="{ 'margin-left': '20%' }"
+      (ngSubmit)="add_contact(); newContactForm.resetForm()"
+      #newContactForm="ngForm"
+    >
+      <!-- FirstName input -->
+      <mat-form-field class="wide-input">
+        <mat-label>Presupesto</mat-label>
+        <input
+          matInput
+          ngModel
+          #presupuesto="ngModel"
+          name="presupuesto"
+          id="presupuesto"
+          placeholder="0"
+          required
+          type="number"
+        />
+        <mat-error *ngIf="!presupuesto.valid && presupuesto.touched">
+          Presupuesto es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <!-- LastName input -->
+      <!-- <mat-form-field class="wide-input">
+        <mat-label>Last Name</mat-label>
+        <input
+          matInput
+          ngModel
+          #last_name="ngModel"
+          name="last_name"
+          id="last_name"
+          placeholder="Last Name"
+          required
+        />
+        <mat-error *ngIf="!last_name.valid && last_name.touched">
+          Last Name is required
+        </mat-error>
+      </mat-form-field> -->
+
+      <!-- Email input -->
+      <!-- <mat-form-field class="wide-input">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          ngModel
+          #email="ngModel"
+          name="email"
+          id="email"
+          placeholder="Contact email"
+          required
+          email
+        />
+        <mat-error *ngIf="!email.valid && email.touched">
+          Contact email is required
+        </mat-error>
+      </mat-form-field> -->
+
+      <!-- Submit button -->
+      <button
+        matInput
+        mat-flat-button
+        [disabled]="!newContactForm.form.valid"
+        [ngStyle]="{
+          'margin-top': '-18px',
+          'margin-left': '10px',
+          padding: '28px'
+        }"
+        color="accent"
+        type="submit"
+      >
+        Add
+      </button>
+    </form>
+  </div>

@@ -1,0 +1,137 @@
+<div>
+    <h2 [ngStyle]="{ 'margin-left': '20%' }">Nuevo Registro</h2>
+
+    <form
+      class="form-container"
+      id="addContactForm"
+      [ngStyle]="{ 'margin-left': '20%' }"
+      (ngSubmit)="addRegistro(); newContactForm.resetForm()"
+      #newContactForm="ngForm"
+    >
+      <!-- FirstName input -->
+      <mat-form-field class="wide-input">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          ngModel
+          #nombre="ngModel"
+          name="nombre"
+          id="nombre"
+          placeholder="Nombre"
+          required
+        />
+        <mat-error *ngIf="!nombre.valid && nombre.touched">
+          Nombre es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <!-- LastName input -->
+      <mat-form-field class="wide-input">
+        <mat-label>Categoria</mat-label>
+        <mat-select 
+            ngModel
+            #category="ngModel"
+            name="category"
+            id="category"
+            placeholder="Categoria"
+            required>
+            <mat-option *ngFor="let categoria of categorias" [value]="categoria.valor">
+                {{categoria.nombre}}
+              </mat-option>
+        </mat-select>
+        <mat-error *ngIf="!category.valid && category.touched">
+          Categoria is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Email input -->
+      <mat-form-field class="wide-input">
+        <mat-label>Monto</mat-label>
+        <input
+          matInput
+          ngModel
+          #monto="ngModel"
+          name="monto"
+          id="monto"
+          placeholder="Monto"
+          required
+          type="number"
+        />
+        <mat-error *ngIf="!monto.valid && monto.touched">
+          Monto es requerido
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Submit button -->
+      <button
+        matInput
+        mat-flat-button
+        [disabled]="!newContactForm.form.valid"
+        [ngStyle]="{
+          'margin-top': '-18px',
+          'margin-left': '10px',
+          padding: '28px'
+        }"
+        color="accent"
+        type="submit"
+      >
+        Agregar
+      </button>
+    </form>
+  </div>
+
+<!-- Contacts table -->
+
+<!-- <div *ngFor="let registro of registros">{{ registro.nombre | titlecase }}, {{ registro.category | titlecase }}, {{ registro.monto }}</div> -->
+<table [ngStyle]="{'width':'100%'}">
+    <tr>
+        <th>Registros</th>
+        <th>Acciones</th>    
+    </tr>
+    <tr *ngFor="let registro of registros">
+        <td [ngStyle]="{'text-align':'center'}">{{ registro.nombre | titlecase }}, {{ registro.category | titlecase }}, {{ registro.monto }}</td>
+        <td [ngStyle]="{'text-align':'center'}">
+            <button mat-flat-button color="accent" (click)="editRegistro(registro)"> Edit</button>
+            &nbsp;
+            <button mat-flat-button color="warn" (click)="removeRegistro(registro)">Delete</button>
+
+        </td>
+    </tr>
+</table>
+
+<!-- <table
+    mat-table
+    [dataSource]="registros"
+    [ngStyle]="{ 'margin-top': '30px' }"
+> -->
+<!-- FirstName column -->
+    <!-- <ng-container matColumnDef="registro">
+    <mat-header-cell *matHeaderCellDef>Registros</mat-header-cell>
+    <mat-cell *matCellDef="let registro">
+        {{ registro.nombre | titlecase }}, {{ registro.category | titlecase }}, {{ registro.monto }}
+    </mat-cell>
+    </ng-container> -->
+
+    <!-- Buttons column
+    <ng-container matColumnDef="accion">
+    <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+    <mat-cell *matCellDef="let registro">
+        {{registro.monto}} -->
+        <!-- <button
+        mat-flat-button
+        color="accent"
+        (click)="search_contact(contact._id); editionMode = !editionMode"
+        >
+        Edit
+        </button>
+        &nbsp;
+        <button mat-flat-button color="warn" (click)="delete_contact(contact)">
+        Delete
+        </button> -->
+    <!-- </mat-cell>
+    </ng-container> -->
+
+    <!-- Table settings -->
+    <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</table> -->
