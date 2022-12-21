@@ -9,7 +9,7 @@
       (ngSubmit)="add_contact(); newContactForm.resetForm()"
       #newContactForm="ngForm"
     >
-      <!-- FirstName input -->
+      <!-- presupuesto input -->
       <mat-form-field class="wide-input">
         <mat-label>Presupesto</mat-label>
         <input
@@ -26,41 +26,6 @@
           Presupuesto es requerido
         </mat-error>
       </mat-form-field>
-
-      <!-- LastName input -->
-      <!-- <mat-form-field class="wide-input">
-        <mat-label>Last Name</mat-label>
-        <input
-          matInput
-          ngModel
-          #last_name="ngModel"
-          name="last_name"
-          id="last_name"
-          placeholder="Last Name"
-          required
-        />
-        <mat-error *ngIf="!last_name.valid && last_name.touched">
-          Last Name is required
-        </mat-error>
-      </mat-form-field> -->
-
-      <!-- Email input -->
-      <!-- <mat-form-field class="wide-input">
-        <mat-label>Email</mat-label>
-        <input
-          matInput
-          ngModel
-          #email="ngModel"
-          name="email"
-          id="email"
-          placeholder="Contact email"
-          required
-          email
-        />
-        <mat-error *ngIf="!email.valid && email.touched">
-          Contact email is required
-        </mat-error>
-      </mat-form-field> -->
 
       <!-- Submit button -->
       <button

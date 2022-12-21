@@ -18,6 +18,7 @@ export class AppComponent {
   // constructor(private centralizedService: CentralizedServiceService) {}
 
   get_data(data:any) {
+    console.log("get_data");
     this.data = data;
     console.log(data);
   }

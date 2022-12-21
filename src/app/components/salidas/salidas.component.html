@@ -8,7 +8,7 @@
       (ngSubmit)="addRegistro(); newContactForm.resetForm()"
       #newContactForm="ngForm"
     >
-      <!-- FirstName input -->
+      <!-- nombre input -->
       <mat-form-field class="wide-input">
         <mat-label>Nombre</mat-label>
         <input
@@ -25,7 +25,7 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- LastName input -->
+      <!-- categoria input -->
       <mat-form-field class="wide-input">
         <mat-label>Categoria</mat-label>
         <mat-select 
@@ -44,7 +44,7 @@
         </mat-error>
       </mat-form-field>
 
-      <!-- Email input -->
+      <!-- monto input -->
       <mat-form-field class="wide-input">
         <mat-label>Monto</mat-label>
         <input
@@ -80,8 +80,6 @@
     </form>
   </div>
 
-<!-- Contacts table -->
-
 <!-- <div *ngFor="let registro of registros">{{ registro.nombre | titlecase }}, {{ registro.category | titlecase }}, {{ registro.monto }}</div> -->
 <table [ngStyle]="{'width':'100%'}">
     <tr>
@@ -98,40 +96,3 @@
         </td>
     </tr>
 </table>
-
-<!-- <table
-    mat-table
-    [dataSource]="registros"
-    [ngStyle]="{ 'margin-top': '30px' }"
-> -->
-<!-- FirstName column -->
-    <!-- <ng-container matColumnDef="registro">
-    <mat-header-cell *matHeaderCellDef>Registros</mat-header-cell>
-    <mat-cell *matCellDef="let registro">
-        {{ registro.nombre | titlecase }}, {{ registro.category | titlecase }}, {{ registro.monto }}
-    </mat-cell>
-    </ng-container> -->
-
-    <!-- Buttons column
-    <ng-container matColumnDef="accion">
-    <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-    <mat-cell *matCellDef="let registro">
-        {{registro.monto}} -->
-        <!-- <button
-        mat-flat-button
-        color="accent"
-        (click)="search_contact(contact._id); editionMode = !editionMode"
-        >
-        Edit
-        </button>
-        &nbsp;
-        <button mat-flat-button color="warn" (click)="delete_contact(contact)">
-        Delete
-        </button> -->
-    <!-- </mat-cell>
-    </ng-container> -->
-
-    <!-- Table settings -->
-    <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-</table> -->
